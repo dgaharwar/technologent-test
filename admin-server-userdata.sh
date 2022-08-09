@@ -1,4 +1,3 @@
-user_data                   = <<-EOF
  #! /bin/bash
  echo "OPM CMaaS"
  echo "Hello World"
@@ -31,5 +30,3 @@ Union" >> /home/ec2-user/.ssh/authorized_keys'
 agentInstall.log'
  sudo bash -c '<%=instance?.cloudConfig?.finalizeServer%> | tee /home/
 ec2-user/finalizeServer.log'
- 
- EOF
