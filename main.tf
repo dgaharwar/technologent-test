@@ -21,11 +21,6 @@ variable "power_schedule" {
   default = "on"
 }
 
-variable user_data_file_path {
-  description = "Provide the relative path of the user data file. Do not pass gzip-compressed data via this argument. Use user_data_base64_file_path variable instead."
-  default = null
-}
-
 locals {
   ec2_power_schedule = "<%=customOptions.ot_power_schedule%>" != "null" ? "<%=customOptions.ot_power_schedule%>" : var.power_schedule
 }
@@ -61,3 +56,4 @@ resource "aws_instance" "ec2" {
     PowerSchedule = local.ec2_power_schedule
     }
 }
+
