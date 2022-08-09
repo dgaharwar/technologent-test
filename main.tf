@@ -26,12 +26,6 @@ variable user_data_file_path {
   default = null
 }
 
-variable user_data_base64_file_path {
-  description = "Provide the relative path of the user data base64 file. Can be used instead of user_data_file_path to pass base64-encoded binary data directly whenever the
-value is not a valid UTF-8 string. For example, gzip-encoded user data must be base64-encoded and passed via this argument to avoid corruption."
-  default = null
-}
-
 locals {
   ec2_power_schedule = "<%=customOptions.ot_power_schedule%>" != "null" ? "<%=customOptions.ot_power_schedule%>" : var.power_schedule
 }
