@@ -50,7 +50,7 @@ resource "aws_instance" "ec2" {
   subnet_id               = data.aws_subnet.subnet.id
   vpc_security_group_ids  = [var.security_groups]
   key_name                = var.key_name
-  user_data               = "${file("admin-server-userdata.sh")}"
+  user_data               = "${file("install_apache.sh")}"
   tags = {
     Name = "<%=instance.name%>"
     PowerSchedule = local.ec2_power_schedule
