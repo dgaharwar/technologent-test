@@ -20,13 +20,16 @@ variable "key_name" {
 variable "power_schedule" {
   default = "on"
 }
+variable "subnet" {
+  default = "us-east-1f"
+}
 
 locals {
-  ec2_power_schedule = "<%=customOptions.ot_power_schedule%>" != "null" ? "<%=customOptions.ot_power_schedule%>" : var.power_schedule
+  ec2_power_schedule = "on" != "null" ? "on" : var.power_schedule
 }
 
 data "aws_subnet" "subnet" {
-  availability_zone = "<%=customOptions.ot_availability_zone%>"
+  availability_zone = var.subnet
   vpc_id            = var.vpc
 }
 
@@ -45,8 +48,8 @@ provider "aws" {
 #################################
 
 resource "aws_instance" "ec2" {
-  instance_type           = "<%=customOptions.ec2InstanceType%>"
-  ami                     = "<%=customOptions.ot_image_id%>"
+  instance_type           = "t2.micro"
+  ami                     = "mi-08d4ac5b634553e16"
   subnet_id               = data.aws_subnet.subnet.id
   vpc_security_group_ids  = [var.security_groups]
   key_name                = var.key_name
