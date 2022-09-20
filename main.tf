@@ -49,7 +49,7 @@ provider "aws" {
 
 resource "aws_instance" "ec2" {
   instance_type           = "t2.micro"
-  ami                     = "mi-08d4ac5b634553e16"
+  ami                     = "ami-08d4ac5b634553e16"
   subnet_id               = data.aws_subnet.subnet.id
   vpc_security_group_ids  = [var.security_groups]
   key_name                = var.key_name
