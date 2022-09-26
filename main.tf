@@ -21,7 +21,7 @@ variable "power_schedule" {
   default = "on"
 }
 variable "subnet" {
-  default = ""
+  default = "us-east-1f"
 }
 
 locals {
@@ -54,9 +54,9 @@ resource "aws_instance" "ec2" {
   vpc_security_group_ids  = [var.security_groups]
   key_name                = var.key_name
   user_data               = "${file("install_apache.sh")}"
+ 
   tags = {
     Name = "<%=instance.name%>"
     PowerSchedule = local.ec2_power_schedule
     }
 }
-
