@@ -21,7 +21,7 @@ variable "power_schedule" {
   default = "on"
 }
 variable "subnet" {
-  default = "us-east-1f"
+  default = "subnet-ed6462e3"
 }
 
 locals {
