@@ -20,17 +20,15 @@ variable "key_name" {
 variable "power_schedule" {
   default = "on"
 }
-variable "subnet" {
-  default = "us-east-1f"
+variable "subnet_id" {
+  default = "subnet-ed6462e3"
 }
+
 
 locals {
   ec2_power_schedule = "on" != "null" ? "on" : var.power_schedule
 }
 
-data "aws_subnet" "subnet" {
-  id = var.subnet
-}
 
 #################################
 ##          Provider           ##
@@ -49,8 +47,8 @@ provider "aws" {
 resource "aws_instance" "ec2" {
   instance_type           = "t2.micro"
   ami                     = "ami-08d4ac5b634553e16"
-  subnet_id               = data.aws_subnet.subnet.id
-  vpc_security_group_ids  = [var.security_groups]
+  subnet_id               = var.subnet_id
+  vpc_security_group_ids  = var.security_groups
   key_name                = var.key_name
   user_data               = "${file("install_apache.sh")}"
   
