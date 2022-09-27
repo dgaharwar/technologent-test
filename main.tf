@@ -29,8 +29,7 @@ locals {
 }
 
 data "aws_subnet" "subnet" {
-  availability_zone = var.subnet
-  vpc_id            = var.vpc
+  id = var.subnet
 }
 
 #################################
@@ -54,6 +53,7 @@ resource "aws_instance" "ec2" {
   vpc_security_group_ids  = [var.security_groups]
   key_name                = var.key_name
   user_data               = "${file("install_apache.sh")}"
+  
  
   tags = {
     Name = "<%=instance.name%>"
