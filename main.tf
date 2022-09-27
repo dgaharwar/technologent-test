@@ -48,7 +48,7 @@ resource "aws_instance" "ec2" {
   instance_type           = "t2.micro"
   ami                     = "ami-08d4ac5b634553e16"
   subnet_id               = var.subnet_id
-  vpc_security_group_ids  = var.security_groups
+  vpc_security_group_ids  = [var.security_groups]
   key_name                = var.key_name
   user_data               = "${file("install_apache.sh")}"
   
